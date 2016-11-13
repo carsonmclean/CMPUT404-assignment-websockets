@@ -58,7 +58,9 @@ Contributors
 * Mark Galloway
 * Abram Hindle
 
-Sources, Code Referenced, etc by Carson McLean
+General Sources, Code Referenced, Documentation, etc used by Carson McLean
 ==============================================
 
 * https://github.com/kennethreitz/flask-sockets
+* https://github.com/abramhindle/WebSocketsExamples
+* https://github.com/carsonmclean/CMPUT404-assignment-ajax
