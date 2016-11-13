@@ -93,13 +93,14 @@ def read_ws(ws,client):
     '''A greenlet function that reads from the websocket and updates the world'''
     # Abram Hindle
     # https://github.com/abramhindle/WebSocketsExamples/blob/master/chat.py
+    print("We are receiving something")
     try:
         while True:
             msg = ws.receive()
             print "WS RECV: %s" % msg
             if (msg is not None):
                 packet = json.loads(msg)
-                send_all_json( packet )
+                send_all_json(packet)
             else:
                 break
     except:

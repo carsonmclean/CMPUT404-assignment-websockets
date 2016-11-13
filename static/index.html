@@ -127,8 +127,10 @@ function addEntity(entity, data) {
     //XXX: Send a XHTML Request that updates the entity you just modified!
     // Abram Hindle
     // https://github.com/abramhindle/WebSocketsExamples/blob/master/static/chat.html
-    console.log(entity);
-    socket.send( JSON.stringify( {entity: data } ) );
+    debug("Add Entity:" + entity);
+    packet = {}
+    packet[entity] = data;
+    socket.send(JSON.stringify(packet));
 }
 var counter = 0;
 function addEntityWithoutName(data) {
@@ -258,6 +260,7 @@ function wsSetup() {
     socket = new WebSocket(url);
     socket.onopen = function() {
         //XXX: TODO What are you going to do here?
+        // Nothing? WS is open. Good!
     };
     socket.onerror = function(msg) {
         debug("WebSocket Error:" + msg.data);
@@ -269,7 +272,7 @@ function wsSetup() {
             // Abram Hindle
             // https://github.com/abramhindle/WebSocketsExamples/blob/master/static/chat.html
             var message = JSON.parse(msg.data);
-            console.log(message)
+            debug(message)
         } catch (e) {
             alert("socket on message: " + e);
         }
