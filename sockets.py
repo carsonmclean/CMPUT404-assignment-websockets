@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # coding: utf-8
-# Copyright (c) 2013-2014 Abram Hindle
+# Copyright (c) 2013-2014 Abram Hindle, 2016 Carson McLean
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
@@ -14,7 +14,7 @@
 # limitations under the License.
 #
 import flask
-from flask import Flask, request
+from flask import Flask, request, redirect
 from flask_sockets import Sockets
 import gevent
 from gevent import queue
@@ -31,7 +31,7 @@ class World:
         self.clear()
         # we've got listeners now!
         self.listeners = list()
-        
+
     def add_set_listener(self, listener):
         self.listeners.append( listener )
 
@@ -55,21 +55,23 @@ class World:
 
     def get(self, entity):
         return self.space.get(entity,dict())
-    
+
     def world(self):
         return self.space
 
-myWorld = World()        
+myWorld = World()
 
 def set_listener( entity, data ):
     ''' do something with the update ! '''
 
 myWorld.add_set_listener( set_listener )
-        
+
 @app.route('/')
 def hello():
     '''Return something coherent here.. perhaps redirect to /static/index.html '''
-    return None
+    # steveha, Xavier Combelle
+    # http://stackoverflow.com/questions/14343812/redirecting-to-url-in-flask
+    return redirect('/static/index.html')
 
 def read_ws(ws,client):
     '''A greenlet function that reads from the websocket and updates the world'''
@@ -99,12 +101,12 @@ def update(entity):
     '''update the entities via this interface'''
     return None
 
-@app.route("/world", methods=['POST','GET'])    
+@app.route("/world", methods=['POST','GET'])
 def world():
     '''you should probably return the world here'''
     return None
 
-@app.route("/entity/<entity>")    
+@app.route("/entity/<entity>")
 def get_entity(entity):
     '''This is the GET version of the entity interface, return a representation of the entity'''
     return None

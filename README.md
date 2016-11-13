@@ -57,3 +57,8 @@ Contributors
 
 * Mark Galloway
 * Abram Hindle
+
+Sources, Code Referenced, etc by Carson McLean
+==============================================
+
+* https://github.com/kennethreitz/flask-sockets
