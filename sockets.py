@@ -61,6 +61,15 @@ class World:
 
 # Abram Hindle
 # https://github.com/abramhindle/WebSocketsExamples/blob/master/chat.py
+def send_all(msg):
+    for client in clients:
+        client.put( msg )
+
+def send_all_json(obj):
+    send_all( json.dumps(obj) )
+
+# Abram Hindle
+# https://github.com/abramhindle/WebSocketsExamples/blob/master/chat.py
 class Client:
     def __init__(self):
         self.queue = queue.Queue()
