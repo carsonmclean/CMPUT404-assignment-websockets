@@ -127,7 +127,7 @@ function addEntity(entity, data) {
     //XXX: Send a XHTML Request that updates the entity you just modified!
     // Abram Hindle
     // https://github.com/abramhindle/WebSocketsExamples/blob/master/static/chat.html
-    debug("Add Entity:" + entity);
+    // debug("Add Entity:" + entity);
     packet = {}
     packet[entity] = data;
     socket.send(JSON.stringify(packet));
@@ -272,7 +272,12 @@ function wsSetup() {
             // Abram Hindle
             // https://github.com/abramhindle/WebSocketsExamples/blob/master/static/chat.html
             var message = JSON.parse(msg.data);
-            debug(message)
+            // Your Friend Ken
+            // http://stackoverflow.com/questions/1078118/how-do-i-iterate-over-a-json-structure
+            for (var entity in message) {
+                world[entity] = message[entity];
+            }
+            drawNextFrame();
         } catch (e) {
             alert("socket on message: " + e);
         }
