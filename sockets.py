@@ -146,6 +146,13 @@ def update(entity):
 @app.route("/world", methods=['POST','GET'])
 def world():
     '''you should probably return the world here'''
+    if (request.method == 'POST'):
+        json_data = flask_post_json()
+        for i in json_data.items():
+            # i is a tuple --> i[0] is entity, i[1] is list of JSON
+            for key,value in i[1].items():
+                # list.items() creates iterable for key,value pairs
+                myWorld.update(i[0], key, value)
     # drs, codegeek, Matthew Cornell, zengr
     # http://stackoverflow.com/questions/13081532/how-to-return-json-using-flask-web-framework
     return jsonify(myWorld.world()), 200
