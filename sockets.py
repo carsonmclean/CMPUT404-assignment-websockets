@@ -110,9 +110,14 @@ def read_ws(ws,client):
             if (msg is not None):
                 packet = json.loads(msg)
                 send_all_json(packet)
+                # Cyrille, Philip Southam
+                # http://stackoverflow.com/questions/5466618/too-many-values-to-unpack-iterating-over-a-dict-key-string-value-list
+                for entity, data in packet.iteritems():
+                    myWorld.set(entity, data)
             else:
                 break
-    except:
+    except Exception,e:
+        print str(e)
         '''Done'''
 
 @sockets.route('/subscribe')
