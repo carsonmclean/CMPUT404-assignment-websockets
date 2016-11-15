@@ -6,7 +6,7 @@
     <meta content='width=device-width; height=device-height; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;' name='viewport' />
     <meta name="viewport" content="width=device-width" />
     <meta name="license" content="
-        Copyright 2013 Google, Abram Hindle
+        Copyright 2013 Google, Abram Hindle, 2016 Carson McLean
 
         Licensed under the Apache License, Version 2.0 (the "License");
         you may not use this file except in compliance with the License.
@@ -42,20 +42,53 @@ function debug(str) {
 }
 debug("Test");
 
+// Kirzilla
+// http://stackoverflow.com/questions/3511200/new-image-how-to-know-if-image-100-loaded-or-not
+// Helped understand how to make an Image in JS
+var linuxImg = new Image(),
+    clippyImg = new Image(),
+    chromeImg = new Image();
+
+// Public Domain
+// https://pixabay.com/p-155549/?no_redirect
+linuxImg.src = "./linux.png";
+// Microsoft Developer Network
+// https://msdn.microsoft.com/en-us/magazine/hh335072.aspx?tduid=(be5e3b89bd067c49b5c395e2fe883565)(256380)(2459594)(TnL5HPStwNw-hxO5hz74i5A411r.s.9lqQ)()
+clippyImg.src = "./clippy.jpg";
+// Public Domain
+// https://commons.wikimedia.org/wiki/File:Google_Chrome_icon_(2011).svg
+chromeImg.src = "./chrome.png";
+
 world = {};
 
 //XXX: TODO Make this prettier!
 function drawCircle(context,entity) {
     with(context) {
+      var x = entity["x"];
+      var y = entity["y"];
+      iconType = entity["icon"];
+
+      // W3Schools
+      // http://www.w3schools.com/tags/canvas_drawimage.asp
+      if (iconType === "linux") {
+        // Adjust positioning so image directly under mouse and make image proper size
+        context.drawImage(linuxImg,x-25,y-25,50,50);
+      } else if (iconType === "clippy") {
+      context.drawImage(clippyImg,x-45,y-45,90,90);
+    } else if (iconType === "chrome") {
+      context.drawImage(chromeImg,x-45,y-45,90,90);
+      } else {
+        // keep original style/rendering incase something goes wrong
         beginPath();
         lineWidth = 3;
-        var x = entity["x"];
-        var y = entity["y"];
+        // var x = entity["x"];
+        // var y = entity["y"];
         //moveTo(x,y);
-        fillStyle = entity["colour"];
+        iconType = entity["icon"];
         strokeStyle = fillStyle;
         arc(x, y, (entity["radius"])?entity["radius"]:50, 0, 2.0 * Math.PI, false);
         stroke();
+      }
     }
 }
 
@@ -237,15 +270,15 @@ mouse = (function() {
 // Add the application specific mouse listeners!
 //XXX: TODO Make these prettier!
 mouse.mousedowners.push(function(x,y,clicked,e) {
-    addEntityWithoutName({'x':x,'y':y,'colour':'blue'});
+    addEntityWithoutName({'x':x,'y':y,'icon':'clippy'});
 });
 
 mouse.mouseuppers.push(function(x,y,clicked,e) {
-    addEntityWithoutName({'x':x,'y':y,'colour':'red'});
+    addEntityWithoutName({'x':x,'y':y,'icon':'chrome'});
 });
 
 mouse.mousedraggers.push(function(x,y,clicked,e) {
-    addEntityWithoutName({'x':x,'y':y,'colour':'green',
+    addEntityWithoutName({'x':x,'y':y,'icon':'linux',
                           'radius':10});
 });
 

@@ -57,10 +57,17 @@ Contributors
 
 * Mark Galloway
 * Abram Hindle
+* Carson McLean
 
-General Sources, Code Referenced, Documentation, etc used by Carson McLean
+General Sources, Code Referenced, Documentation, Images, etc used by Carson McLean
 ==============================================
 
 * https://github.com/kennethreitz/flask-sockets
 * https://github.com/abramhindle/WebSocketsExamples
 * https://github.com/carsonmclean/CMPUT404-assignment-ajax
+* Public Domain
+  * https://pixabay.com/p-155549/?no_redirect
+* Microsoft Developer Network
+  * https://msdn.microsoft.com/en-us/magazine/hh335072.aspx?tduid=(be5e3b89bd067c49b5c395e2fe883565)(256380)(2459594)(TnL5HPStwNw-hxO5hz74i5A411r.s.9lqQ)()
+* Public Domain
+  * https://commons.wikimedia.org/wiki/File:Google_Chrome_icon_(2011).svg
